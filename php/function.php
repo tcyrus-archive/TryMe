@@ -1,7 +1,7 @@
 <?php
 
         function getChallengeList($friends) {
-          $result = mysql_query( "SELECT DISTINCT challenges FROM users WHERE ID in ".implode(',',$friends)) or die(mysql_error());
+          $result = mysql_query("SELECT DISTINCT challenges FROM ".implode(',',$friends).") or die(mysql_error());
           return $result;
         }
 
