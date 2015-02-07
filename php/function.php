@@ -1,8 +1,12 @@
 <?php
 
         function getChallengeList($friend) {
-          $result = mysql_query("SELECT DISTINCT challenges FROM '$friends'");
-          return $result;
+          $result = mysql_query("SELECT challenges FROM '$friends'");
+          $arr = array();
+          while ($r1 = mysql_fetch_assoc($result)) {
+	     array_push($arr,mysql_query("SELECT * FROM challenges WHERE ID=$r1"));
+	  }
+          return $arr;
         }
 
 
