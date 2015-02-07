@@ -21,34 +21,24 @@
          
         // check for successful store
 
-        if ($result) 
-		{
+        if ($result) {
             // get user details
 
             $result = mysql_query( "SELECT * FROM users WHERE gcm_regid = $gcm_regid") or die(mysql_error());
 
             // return user details 
 
-            if (mysql_num_rows($result) > 0) 
-			{ 
-                return mysql_fetch_array($result);
-            }
-			else 
-			{
-                return false;
-            }
+            if (mysql_num_rows($result) > 0) {  return mysql_fetch_array($result);}
+	    else {return false;}
              
         }
-		else
-		{
-            return false;
-        }
+	else {return false;}
     }
  
 	// Getting all registered users
 	function getAllUsers() 
 	{
-		$result = mysql_query("select * FROM users");
+		$result = mysql_query("SELECT * FROM users");
 		return $result;
 	}
  
@@ -67,7 +57,7 @@
 			return false;
 		}
 
-        if ($NumOfRows > 0) 
+        if ($NumOfRows > 0)
 		{
 			// user existed
 			return true;

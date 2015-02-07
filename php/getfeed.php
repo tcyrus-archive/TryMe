@@ -1,5 +1,5 @@
 <?php
-require_once('loader.php');
+//require_once('loader.php');
  
 $friends=$_GET["friends"];
 
