@@ -1,10 +1,16 @@
 <?php
+
+        function getChallengeList($friends) {
+          $result = mysql_query( "SELECT DISTINCT challenges FROM users WHERE ID in ".implode(',',$friends)) or die(mysql_error());
+          return $result;
+        }
+
  
 	//Storing new user and returns user details
     
 	function storeUser($user_fb,$gcm_regid)
 	{
-		if (doesUserExist($gcm_regid))
+		if (doesUserExist($user_fb))
 		{
 			return true;
 		}
@@ -47,9 +53,9 @@
 	}
  
 	// Validate user
-	function doesUserExist($reg_id)
+	function doesUserExist($user_fb)
 	{
-        $result = mysql_query("SELECT gcm_regid from users WHERE gcm_regid = '$reg_id'");
+        $result = mysql_query("SELECT fb_id from users WHERE fb_id = '$fb_id'");
 
 		if ($result != false)
 		{

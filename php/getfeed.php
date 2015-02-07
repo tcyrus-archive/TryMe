@@ -1,9 +1,6 @@
 <?php
 require_once('loader.php');
  
-// return json response 
-$json = array();
- 
 $friends=$_GET["friends"];
 
 /**
@@ -12,16 +9,17 @@ $friends=$_GET["friends"];
  */
 if (isset($friends))
 {
+    $friends=json_decode($friends);
     // Store user details in db
     $res = getChallengeList($friends);
  
     if(res)
     {
-    	echo $res;
+    	echo json_encode($res);
     }
     else
     {
-		http_response_code(404);
+       http_response_code(404);
     }
 } 
 else 
