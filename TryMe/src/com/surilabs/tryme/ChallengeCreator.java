@@ -11,6 +11,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -18,6 +22,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class ChallengeCreator extends Activity 
@@ -80,13 +85,23 @@ public class ChallengeCreator extends Activity
 	        	Uri videoUri = data.getData();
 	        	
 	        	final String path = getRealPathFromURI(this, videoUri);
-	        	new Thread(new Runnable() 
-	        	{
-                    public void run() 
-                    {                   
-        	        	uploadFile(path);                                                  
-                    }
-	        	}).start();        
+	        	
+	        	Bitmap bm = getFrame(path);
+	        	if(bm == null)
+	        		Log.i(TAG, "bitmap is null");
+	        	else
+	        		Log.i(TAG, "bitmap is not null");
+	        	ImageView im = (ImageView)findViewById(R.id.imageView1);
+	        	Drawable new_image= new BitmapDrawable(bm);
+	        	im.setBackgroundDrawable(new_image);
+	        	
+//	        	new Thread(new Runnable() 
+//	        	{
+//                    public void run() 
+//                    {                   
+//        	        	uploadFile(path);                                                  
+//                    }
+//	        	}).start();        
             }
 	        else if (resultCode == MainActivity.RESULT_CANCELED)
 	        {
@@ -98,14 +113,17 @@ public class ChallengeCreator extends Activity
 	private String getRealPathFromURI(Context context, Uri contentUri) 
 	{
 		  Cursor cursor = null;
-		  try { 
+		  try
+		  { 
 		    String[] proj = { MediaStore.Images.Media.DATA };
 		    cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
 		    int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 		    cursor.moveToFirst();
 		    return cursor.getString(column_index);
-		  } finally {
-		    if (cursor != null) {
+		  } finally 
+		  {
+		    if (cursor != null) 
+		    {
 		      cursor.close();
 		    }
 		  }
@@ -255,4 +273,18 @@ public class ChallengeCreator extends Activity
              
          } // End else block 
        } 
+
+	private Bitmap getFrame(String path) 
+	{
+	    try 
+	    {
+	        Bitmap b;
+	        MediaMetadataRetriever mRetriever = new MediaMetadataRetriever();
+	        mRetriever.setDataSource(path);                    
+
+            b = mRetriever.getFrameAtTime(1000*3, MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
+	        
+	        return b;
+	    } catch (Exception e) { return null; }
+	}
 }
