@@ -12,21 +12,21 @@
 
 	//Storing new user and returns user details
 
-	function storeUser($user_fb) {
+	function storeUser($fb_id,$gcm_id) {
 		if (doesUserExist($user_fb)) {
 			return true;
 		}
 
 		// insert user into database
 
-		$result = mysql_query("INSERT INTO users user_fb VALUES '$user_fb'");
+		$result = mysql_query("INSERT INTO users (fb_id,gcm_id) VALUES ('$fb_id','gcm_id')");
 
         // check for successful store
 
         if ($result) {
             // get user details
 
-            $result = mysql_query("SELECT * FROM users WHERE user_fb = '$user_fb'") or die(mysql_error());
+            $result = mysql_query("SELECT * FROM users WHERE fb_id = 'fb_id'") or die(mysql_error());
 
             // return user details
 
@@ -49,7 +49,7 @@
 	}
 
 	// Validate user
-	function doesUserExist($user_fb) {
+	function doesUserExist($fb_id) {
         	$result = mysql_query("SELECT FROM users WHERE fb_id = '$fb_id'");
 		if ($result != false) {
 			if (mysql_num_rows($result)>0) {
