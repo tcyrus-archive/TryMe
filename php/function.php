@@ -20,25 +20,6 @@
 		// insert user into database
 
 		$result = mysql_query("INSERT INTO users (fb_id,gcm_id) VALUES ('$fb_id','gcm_id')");
-
-        // check for successful store
-
-        if ($result) {
-            // get user details
-
-            $result = mysql_query("SELECT * FROM users WHERE fb_id = 'fb_id'") or die(mysql_error());
-
-            // return user details
-
-            if (mysql_num_rows($result) > 0) {
-		return true;
-	    } else {
-		var_dump(mysql_error());
-		return false;
-	    }
-
-        }
-	else {return false;}
     }
 
 	// Getting all registered users
