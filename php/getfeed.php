@@ -1,7 +1,7 @@
 <?php
 require_once('loader.php');
 
-$friends = $_GET["friends"];
+$friends = $_POST["friends"];
 
 /**
  * Registering a user device in database
@@ -11,7 +11,7 @@ $friends = $_GET["friends"];
 //echo '{"challenges":[{"friend":"782093555198877","desc":"This is an example challenge used for testing purposes."}]}';
 
 if (isset($friends)) {
-    $friends = json_decode($friends)[0];
+    $friends=json_decode($friends)[0];
     print_r($friends);
     // Store user details in db
     $res     = getChallengeList($friends);
