@@ -1,11 +1,13 @@
 package com.surilabs.tryme;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +32,11 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void createChallenge(View v)
+	{
+		Intent i = new Intent(this, ChallengeCreator.class);
+    	startActivity(i);
 	}
 }
