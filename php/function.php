@@ -106,8 +106,7 @@
         // Execute post
         $result = curl_exec($ch);
 
-        if ($result === FALSE)
-		{
+        if ($result === FALSE) {
             die('Curl failed: ' . curl_error($ch));
         }
 
