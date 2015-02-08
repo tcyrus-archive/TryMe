@@ -1,4 +1,8 @@
 <?php
+        function getChallenges($id) {
+          return mysql_query("SELECT * FROM challenge WHERE ID = '$id'");
+        }
+
 
         function getChallengeList($friends) {
           $arr=array();
