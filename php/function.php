@@ -31,7 +31,7 @@
 
 	// Validate user
 	function doesUserExist($fb_id) {
-        	$result = mysql_query("SELECT FROM users WHERE fb_id = '$fb_id'");
+        	$result = mysql_query("SELECT * FROM users WHERE fb_id = '$fb_id' LIMIT 1");
 		if ($result != false) {
 			if (mysql_num_rows($result)>0) {
 				return true;
