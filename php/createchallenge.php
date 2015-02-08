@@ -2,14 +2,16 @@
 
 require_once('loader.php');
 
-$id=$_GET["id"];
+$title=$_GET["title"];
+$desc=$_GET["desc"];
+
 /**
  * Registering a user device in database
  * Store reg id in users table
  */
 
-if (isset($friends)) {
+if (isset($title)) {
     // Store user details in db
-    echo json_encode(getChallenges($id));
+    createChallenge($title,$desc);
 }
 ?>

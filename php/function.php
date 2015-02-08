@@ -1,4 +1,8 @@
 <?php
+        function createChallenge($title,$desc) {
+          $result = mysql_query("INSERT INTO challenges (title,desc) VALUES ('title','$desc')");
+        }
+
         function getChallenges($id) {
           return mysql_query("SELECT * FROM challenge WHERE ID = '$id'");
         }
