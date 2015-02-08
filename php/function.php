@@ -2,10 +2,13 @@
 
         function getChallengeList($friends) {
           $arr=array();
+          echo $friends;
           for ($friend as $friends) {
             $result=mysql_query("SELECT challenges FROM '$friend'");
+            echo $result;
             $arr2=array();
             while ($r1=mysql_fetch_assoc($result)) {
+               echo $r1;
 	             array_push($arr2,mysql_query("SELECT * FROM challenges WHERE ID='$r1'"));
 	          }
             $arr[$friend]=$arr2;
