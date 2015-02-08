@@ -10,6 +10,7 @@ $friends=$_POST["friends"];
 
 //echo '{"challenges":[{"friend":"782093555198877","desc":"This is an example challenge used for testing purposes."}]}';
 if (isset($friends)) {
+  echo $friends;
     // Store user details in db
     echo json_encode(getChallengeList($friends));
 }
