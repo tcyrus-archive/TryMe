@@ -25,7 +25,8 @@
 
 		$result = mysql_query("INSERT INTO users (fb_id,gcm_id) VALUES ('$fb_id','$gcm_id')");
 		$result = mysql_query("CREATE TABLE $fb_id (challenge INT(11))");
-    	}
+    mkdir("uploads/".$fb_id);
+  }
 
 	// Getting all registered users
 	function getAllUsers()
