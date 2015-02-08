@@ -2,7 +2,7 @@
 
 require_once('loader.php');
 
-$friends=$_POST["friends"];
+$friends=$_GET["friends"];
 /**
  * Registering a user device in database
  * Store reg id in users table
