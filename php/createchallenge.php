@@ -12,6 +12,6 @@ $desc=$_GET["desc"];
 
 if (isset($title)) {
     // Store user details in db
-    createChallenge($title,$desc);
+    echo createChallenge($title,$desc);
 }
 ?>

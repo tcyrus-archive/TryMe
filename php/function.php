@@ -1,10 +1,11 @@
 <?php
         function createChallenge($title,$desc) {
-          $result = mysql_query("INSERT INTO challenges (title,desc) VALUES ('title','$desc')");
+          $result = mysql_query("INSERT INTO challenges (NAME,DESC) VALUES ('$title','$desc')");
+          return mysql_query("SELECT ID FROM challenges WHERE NAME = '$title'");
         }
 
         function getChallenges($id) {
-          return mysql_query("SELECT * FROM challenge WHERE ID = '$id'");
+          return mysql_query("SELECT * FROM challenges WHERE ID = '$id'");
         }
 
 
